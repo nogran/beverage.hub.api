@@ -1,6 +1,7 @@
 package br.com.desafioestoque.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -47,6 +48,11 @@ public class BebidaController {
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Bebida>> getByNome(@PathVariable String nome){
 		return ResponseEntity.ok(bebidaRepository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
+	@GetMapping("/tipo/{tipoBebida}")
+	public ResponseEntity<Optional<Bebida>> getByTipoBebida(@PathVariable String tipoBebida){
+		return ResponseEntity.ok(bebidaRepository.findByTipoBebida(tipoBebida));
 	}
 	
 	@PostMapping

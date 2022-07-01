@@ -1,6 +1,7 @@
 package br.com.desafioestoque.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.desafioestoque.model.Bebida;
 import br.com.desafioestoque.model.Secao;
 import br.com.desafioestoque.repository.SecaoRepository;
 
@@ -41,6 +43,11 @@ public class SecaoController {
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Secao>> getByNome(@PathVariable String nome){
 		return ResponseEntity.ok(secaoRepository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
+	@GetMapping("/tipo/{tipoSecao}")
+	public ResponseEntity<Optional<Secao>> getByTipoSecao(@PathVariable String tipoSecao){
+		return ResponseEntity.ok(secaoRepository.findByTipoSecao(tipoSecao));
 	}
 	
 	@PostMapping

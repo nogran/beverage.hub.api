@@ -46,11 +46,12 @@ public class Bebida {
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	@NotNull(message = "Volume é obrigatório.")
 	@Positive(message = "O Volume deve ser maior do que zero.")
-	private BigDecimal volume;
+	private BigDecimal volumeBebida;
 	
+
 	@NotBlank(message = "Atributo Tipo precisa ser inserido.")
 	@Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
-	private String tipo;
+	private String tipoBebida;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("bebida")
@@ -59,6 +60,22 @@ public class Bebida {
 	@ManyToOne
 	@JsonIgnoreProperties("bebida")
 	private Usuario usuario;
+	
+	public BigDecimal getVolumeBebida() {
+		return volumeBebida;
+	}
+	
+	public void setVolumeBebida(BigDecimal volumeBebida) {
+		this.volumeBebida = volumeBebida;
+	}
+	
+	public String getTipoBebida() {
+		return tipoBebida;
+	}
+	
+	public void setTipoBebida(String tipoBebida) {
+		this.tipoBebida = tipoBebida;
+	}
 	
 	public LocalDate getDataValidade() {
 		return dataValidade;
@@ -114,22 +131,6 @@ public class Bebida {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
-	}
-
-	public BigDecimal getVolume() {
-		return volume;
-	}
-
-	public void setVolume(BigDecimal volume) {
-		this.volume = volume;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 }

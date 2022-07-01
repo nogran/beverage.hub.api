@@ -1,5 +1,6 @@
 package br.com.desafioestoque.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,9 +31,35 @@ public class Secao {
 	@Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
 	private String nome;
 	
+	@NotBlank(message = "Atributo Tipo precisa ser inserido.")
+	@Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
+	private String tipoSecao;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	@NotNull(message = "Volume é obrigatório.")
+	@Positive(message = "O Volume deve ser maior do que zero.")
+	private BigDecimal volumeSecao;
+	
 	@OneToMany(mappedBy = "secao", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("secao")
 	private List<Bebida> bebida;
+	
+	public BigDecimal getVolumeSecao() {
+		return volumeSecao;
+	}
+
+	public void setVolumeSecao(BigDecimal volumeSecao) {
+		this.volumeSecao = volumeSecao;
+	}
+	
+	public String getTipoSecao() {
+		return tipoSecao;
+	}
+
+	public void setTipoSecao(String tipoSecao) {
+		this.tipoSecao = tipoSecao;
+	}
+
 
 	public Long getId() {
 		return id;
