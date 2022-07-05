@@ -69,10 +69,10 @@ public class BebidaController {
 //    }
 	
 	@PostMapping
-    public ResponseEntity<Bebida> postBebida(@Valid @RequestBody Optional<Bebida> bebida){
+    public ResponseEntity<Bebida> postBebida(@RequestBody Bebida bebida){
 		return bebidaService.checarTipoBebida(bebida)
 				.map(resposta -> ResponseEntity.ok(resposta))
-				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 	
 	@PutMapping

@@ -27,11 +27,11 @@ public class Secao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "Atributo nome precisa ser inserido.")
+//	@NotBlank(message = "Atributo nome precisa ser inserido.")
 	@Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
 	private String nome;
 	
-	@NotBlank(message = "Atributo Tipo precisa ser inserido.")
+//	@NotBlank(message = "Atributo Tipo precisa ser inserido.")
 	@Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
 	private String tipoSecao;
 	
