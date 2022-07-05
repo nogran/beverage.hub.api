@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.desafioestoque.model.Bebida;
 import br.com.desafioestoque.repository.BebidaRepository;
 import br.com.desafioestoque.repository.SecaoRepository;
+import br.com.desafioestoque.service.BebidaService;
 
 @RestController
 @RequestMapping("/bebida")
@@ -29,6 +30,9 @@ public class BebidaController {
 
 	@Autowired
 	private BebidaRepository bebidaRepository;
+	
+	@Autowired
+	private BebidaService bebidaService;
 	
 	@Autowired
 	private SecaoRepository secaoRepository;
@@ -55,13 +59,20 @@ public class BebidaController {
 		return ResponseEntity.ok(bebidaRepository.findByTipoBebida(tipoBebida));
 	}
 	
+//	@PostMapping
+//    public ResponseEntity<Bebida> postBebida(@Valid @RequestBody Bebida bebida){
+//
+//        if(secaoRepository.existsById(bebida.getSecao().getId()))
+//            return ResponseEntity.status(HttpStatus.CREATED).body(bebidaRepository.save(bebida));
+//
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//    }
+	
 	@PostMapping
-    public ResponseEntity<Bebida> postBebida(@Valid @RequestBody Bebida bebida){
-
-        if(secaoRepository.existsById(bebida.getSecao().getId()))
-            return ResponseEntity.status(HttpStatus.CREATED).body(bebidaRepository.save(bebida));
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<Bebida> postBebida(@Valid @RequestBody Optional<Bebida> bebida){
+		return bebidaService.checarTipoBebida(bebida)
+				.map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
     }
 	
 	@PutMapping

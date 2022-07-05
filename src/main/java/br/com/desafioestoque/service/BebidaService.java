@@ -2,6 +2,8 @@ package br.com.desafioestoque.service;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import br.com.desafioestoque.model.Bebida;
@@ -15,7 +17,7 @@ public class BebidaService {
 	private BebidaRepository bebidaRepository;
 	private SecaoRepository secaoRepository;
 	
-	public Optional<Bebida> checarTipoBebida(Bebida bebida, Secao secao) {		
+	public Optional<Bebida> checarTipoBebida(@Valid Bebida bebida, Secao secao) {		
 				
 		if (bebidaRepository.findByTipoBebida(bebida.getTipoBebida())
 				.equals(secaoRepository.findByTipoSecao(secao.getTipoSecao()))) {
@@ -23,5 +25,10 @@ public class BebidaService {
 		return Optional.of(bebidaRepository.save(bebida));
 	}
 		return Optional.empty();
+	}
+
+	public Optional<Bebida> checarTipoBebida(@Valid Optional<Bebida> bebida) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
