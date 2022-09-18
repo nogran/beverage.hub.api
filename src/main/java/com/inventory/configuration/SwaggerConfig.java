@@ -1,10 +1,8 @@
-package br.com.desafioestoque.configuration;
+package com.inventory.configuration;
 
 import org.springdoc.core.customizers.OpenApiCustomiser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -16,29 +14,27 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 
 @Configuration
 public class SwaggerConfig {
-	
-	@Bean
+    @Bean
     public OpenAPI springDesafioEstoqueOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                    .title("Desafio Estoque")
-                    .description("Desafio Estoque")
-                    .version("v0.0.1")
-                .license(new License()
-                    .name("Mateus Nogueira")
-                    .url("https://github.com/nogran"))
-                .contact(new Contact()
-                    .name("Mateus Nogueira")
-                    .url("https://github.com/nogran")
-                    .email("mateusnog95@gmail.com")))
+                        .title("Desafio Estoque")
+                        .description("Desafio Estoque")
+                        .version("v1.0.0")
+                        .license(new License()
+                                .name("Mateus Nogueira")
+                                .url("https://github.com/nogran"))
+                        .contact(new Contact()
+                                .name("Mateus Nogueira")
+                                .url("https://github.com/nogran")
+                                .email("mateusnog95@gmail.com")))
                 .externalDocs(new ExternalDocumentation()
-                    .description("Github")
-                    .url("https://github.com/nogran"));
+                        .description("Github")
+                        .url("https://github.com/nogran"));
     }
 
     @Bean
     public OpenApiCustomiser customerGlobalHeaderOpenApiCustomiser() {
-
         return openApi -> {
             openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations().forEach(operation -> {
 
@@ -51,15 +47,12 @@ public class SwaggerConfig {
                 apiResponses.addApiResponse("401", createApiResponse("Acesso Não Autorizado!"));
                 apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
                 apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicação!"));
-
             }));
         };
     }
 
     private ApiResponse createApiResponse(String message) {
-
         return new ApiResponse().description(message);
-
     }
 
 }
