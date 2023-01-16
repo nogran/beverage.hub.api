@@ -8,8 +8,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.inventory.model.User;
-import com.inventory.model.UserLogin;
+import com.inventory.domain.model.User;
+import com.inventory.domain.model.UserLogin;
 import com.inventory.repository.UserRepository;
 
 @Service

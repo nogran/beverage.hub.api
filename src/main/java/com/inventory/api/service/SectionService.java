@@ -1,6 +1,6 @@
 package com.inventory.service;
 
-import com.inventory.model.Section;
+import com.inventory.domain.model.Section;
 import com.inventory.repository.SectionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,5 +16,9 @@ public class SectionService {
 
     public List<Section> findAll(){
         return sectionRepository.findAll();
+    }
+
+    public Section saveSection(Section section){
+        return sectionRepository.save(section);
     }
 }

@@ -1,4 +1,4 @@
-package com.inventory.model;
+package com.inventory.domain.model;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -21,7 +22,7 @@ public class User {
     @Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
     private String name;
 
-    //	@Schema(example = "email@email.com")
+    @Schema(example = "email@email.com")
     @Email
     @NotBlank(message = "Atributo Email precisa ser inserido.")
     private String user;
@@ -30,10 +31,7 @@ public class User {
     @Size(min = 8, message = "Número mínimo é 8 caracteres.")
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "user_hist",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "drink_id"))
+    @OneToMany(mappedBy = "user")
     private List<Drink> drinks;
 
 }

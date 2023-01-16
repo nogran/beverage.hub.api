@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inventory.model.User;
+import com.inventory.domain.model.User;
 import com.inventory.repository.UserRepository;
 
 @RestController

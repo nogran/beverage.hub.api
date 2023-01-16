@@ -2,7 +2,7 @@ package com.inventory.repository;
 
 import java.util.Optional;
 
-import com.inventory.model.User;
+import com.inventory.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
