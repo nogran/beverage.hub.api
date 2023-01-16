@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  #    hikari:
+#      schema: migrations
+  jpa:
+    hibernate:
+      ddlAuto: none
+  flyway:
+    schemas: migrations
+    locations: db/migration
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+server: ${PORT:8081}
+
