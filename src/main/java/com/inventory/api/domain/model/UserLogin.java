@@ -1,4 +1,4 @@
-package com.inventory.domain.model;
+package com.inventory.api.domain.model;
 
 import lombok.Data;
 

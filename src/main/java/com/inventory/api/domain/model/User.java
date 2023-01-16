@@ -1,37 +1,35 @@
-package com.inventory.domain.model;
+package com.inventory.api.domain.model;
 
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
+    @Column(name = "id", unique = true)
+    @GeneratedValue(generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
     private Long id;
 
-    @NotBlank(message = "Atributo Nome precisa ser inserido.")
-    @Size(min = 5, max = 255, message = "Número mínimo de caracteres é 5 e número máximo de caracteres é 255.")
+    @NotBlank(message = "Atributo 'nome' precisa ser inserido.")
+    @Size(min = 5, max = 255, message = "Atributo 'nome' precisa ter '5' números mínimos de caracteres e '255' números máximos de caracteres.")
+    @Column(name = "name")
     private String name;
 
-    @Schema(example = "email@email.com")
     @Email
-    @NotBlank(message = "Atributo Email precisa ser inserido.")
-    private String user;
+    @NotBlank(message = "Atributo 'email' precisa ser inserido.")
+    @Column(name = "email")
+    private String email;
 
-    @NotBlank(message = "Atributo senha precisa ser inserido.")
-    @Size(min = 8, message = "Número mínimo é 8 caracteres.")
+    @NotBlank(message = "Atributo 'senha' precisa ser inserido.")
+    @Size(min = 8, message = "Atributo 'senha' precia ter '8' números mínimos de caracteres.")
+    @Column(name = "password")
     private String password;
-
-    @OneToMany(mappedBy = "user")
-    private List<Drink> drinks;
-
 }

@@ -1,0 +1,10 @@
+CREATE SEQUENCE section_seq
+INCREMENT BY 1;
+
+CREATE TABLE sections(
+id SERIAL PRIMARY KEY,
+name VARCHAR NOT NULL,
+category VARCHAR NOT NULL,
+volume DECIMAL,
+created_by VARCHAR NOT NULL
+);

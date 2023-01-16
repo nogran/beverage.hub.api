@@ -1,13 +1,14 @@
-package com.inventory.repository;
+package com.inventory.api.repository;
 
+import java.util.List;
 import java.util.Optional;
 
-import com.inventory.domain.model.User;
+import com.inventory.api.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository <User, Long> {
-	
-	Optional<User>findByUser(String user);
+	List<User> findAll();
+	Optional<User>findByEmail(String email);
 }
